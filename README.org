@@ -1,9 +1,9 @@
 * Rastiler - v0.0.1
-I am pretty sure that it was done before many many times. But I found nothing when I needed this tool, so here we are.
+/I am pretty sure, that it was done before many many times. But I found nothing when I needed the solution, so here we are./
 
 Rastiler - simple XYZ-tile server based on nginx and openresty, written to serve tiles from special .sqlite map file format, utilized by some navigator programs. It's not an .mbtiles and .mbtiles is not supported, but it might be in future.
 
 Use =docker-compose.yml.example= file to create your own. All db files are supposed to be in `dbs` directory mounted directly into the `/usr/local/openresty/nginx/conf` of a container.
 
 After spinning up a server, your tiles will be accesible by
-http://localhost:18000/tiles/%database_name%/{z}/{x}/{y}
+=http://localhost:18000/tiles/%database_name%/{z}/{x}/{y}=
