@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  rastiler:
+    image: maps/rastiler
+    container_name: rastiler
+    volumes:
+      - ./:/usr/local/openresty/nginx/conf/
+    build:
+      context: ./
+    restart: unless-stopped
+    command: /bin/bash -c "envsubst < /usr/local/openresty/nginx/conf/nginx.conf.template > /usr/local/openresty/nginx/conf/nginx.conf && nginx -g 'daemon off;'"
+    ports:
+      - '18000:18000'
