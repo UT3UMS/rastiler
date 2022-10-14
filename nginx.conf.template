@@ -17,10 +17,19 @@ http {
         location @tile_server {
             content_by_lua_file /usr/local/openresty/nginx/conf/xyz-tile.lua;
         }
+
+        location @wikimapia_proxy {
+            content_by_lua_file /usr/local/openresty/nginx/conf/wikimapia.lua;
+        }
+
         #           DB_name/   z  /   x    /   y
         location ~ ^/tiles/(?<db_name>[^/]+)/(?<z>[0-9]+)/(?<x>[0-9]+)/(?<y>[0-9]+)$ {
             root cache;
             try_files /$db_name/$z/$x/$y @tile_server;
+        }
+        location ~ ^/wikimapia/(?<z>[0-9]+)/(?<x>[0-9]+)/(?<y>[0-9]+)$ {
+            root cache;
+            try_files /$z/$x/$y @wikimapia_proxy;
         }
     }
 }
